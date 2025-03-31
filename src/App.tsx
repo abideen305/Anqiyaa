@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, Users, GraduationCap, Layout, ChevronRight, Star, Clock, Users2, BookOpenCheck, Heart, BookText, Sparkles, Mail, Phone, MessageSquare, Instagram, Send, MessageCircle } from 'lucide-react';
+import { BookOpen, Users, GraduationCap, Layout, ChevronRight, Star, Clock, Users2, BookOpenCheck, Heart, BookText, Sparkles, Mail, Phone, MessageSquare, Instagram, Whatsapp, Telegram, Send, MessageCircle } from 'lucide-react';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -34,7 +34,7 @@ function App() {
     <div className="min-h-screen bg-white">
       {/* WhatsApp Chat Button */}
       <a
-        href="https://wa.me/2348130363863"
+        href="https://wa.me/2348130363863?text=Assalamualaykum%20warahmatullah%20Al%20Anqiyaa%20Islamic%20Academy.%20I%20want%20to%20make%20enquiries%20about%20your%20online%20Islamic%20and%20Qur'an%20classes.%20My%20name%20is"
         className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50 flex items-center gap-2"
         target="_blank"
         rel="noopener noreferrer"
@@ -182,7 +182,7 @@ function App() {
           <div>
             <h3 className="text-2xl font-bold mb-8 text-gray-900 text-center">Group Classes</h3>
             <div className="bg-emerald-50 rounded-2xl p-8 mb-8">
-              <p className="text-emerald-800 font-semibold mb-4">Maximum 10 students per class</p>
+              <p className="text-emerald-800 font-semibold mb-4">Maximum of 10 students per class</p>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
@@ -443,12 +443,15 @@ function App() {
                 <a href="#" className="hover:text-emerald-300">
                   <Instagram className="h-8 w-8" />
                 </a>
-                <a href="https://wa.me/2348130363863" className="hover:text-emerald-300">
-                  <MessageCircle className="h-8 w-8" />
-                </a>
-                <a href="#" className="hover:text-emerald-300">
-                  <Send className="h-8 w-8" />
-                </a>
+                <a 
+  href="https://wa.me/2348130363863?text=Assalamualaykum%20warahmatullah%20Al%20Anqiyaa%20Islamic%20Academy.%20I%20want%20to%20make%20enquiries%20about%20your%20online%20Islamic%20and%20Qur'an%20classes.%20My%20name%20is" 
+  className="hover:text-emerald-300"
+>
+  <Whatsapp className="h-8 w-8" /> {/* WhatsApp icon with automated message */}
+</a>
+<a href="https://t.me/yourTelegramUsername" className="hover:text-emerald-300">
+  <Telegram className="h-8 w-8" /> {/* Telegram icon */}
+</a>
               </div>
             </div>
 
