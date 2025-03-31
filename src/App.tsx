@@ -47,7 +47,7 @@ function App() {
       <div 
         className="relative h-screen flex items-center justify-center bg-gradient-to-r from-emerald-900/90 to-emerald-800/90"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1597935258735-e238c37547a2?auto=format&fit=crop&q=80")`,
+          // backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1597935258735-e238c37547a2?auto=format&fit=crop&q=80")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
