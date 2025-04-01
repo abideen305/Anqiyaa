@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BookOpen, Users, GraduationCap, Layout, ChevronRight, Star, Clock, Users2, BookOpenCheck, Heart, BookText, Sparkles, Mail, Phone, MessageCircle, Instagram, Send } from 'lucide-react';
 
 function App() {
@@ -10,10 +10,39 @@ function App() {
     message: ''
   });
 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const headerImages = [
+    "https://images.unsplash.com/photo-1597935258735-e238c37547a2?auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1584286595398-a59e7dfb7991?auto=format&fit=crop&q=80"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === headerImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    
+    // Construct the URL with form data as query parameters
+    const surveyUrl = new URL('https://surveyheart.com/form/6770234af544d217b484b4c8');
+    surveyUrl.searchParams.append('name', formData.name);
+    surveyUrl.searchParams.append('email', formData.email);
+    surveyUrl.searchParams.append('phone', formData.phone);
+    surveyUrl.searchParams.append('course', formData.course);
+    surveyUrl.searchParams.append('message', formData.message);
+
+    // Open the survey in a new tab
+    window.open(surveyUrl.toString(), '_blank');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -43,25 +72,57 @@ function App() {
         <span className="hidden md:inline">Chat with us</span>
       </a>
 
+      {/* Navigation Bar */}
+      <nav className="bg-white shadow-md fixed w-full z-50 top-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            <div className="flex-shrink-0">
+              <img 
+                src="https://i.ibb.co/6L0WcpZ/AL-ANQIYAA-LOGO-2-1-1-removebg-preview.png" 
+                alt="Al Anqiyaa Logo" 
+                className="h-12 w-auto"
+              />
+            </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <button 
+                onClick={() => scrollToSection('courses')}
+                className="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Courses
+              </button>
+              <button 
+                onClick={() => scrollToSection('faq')}
+                className="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                FAQ
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Contact Us
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="bg-emerald-600 text-white hover:bg-emerald-700 px-4 py-2 rounded-md text-sm font-medium"
+              >
+                Enroll Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section */}
       <div 
-        className="relative h-screen flex items-center justify-center bg-gradient-to-r from-emerald-900/90 to-emerald-800/90"
+        className="relative min-h-screen flex items-center justify-center bg-gradient-to-r from-emerald-900/90 to-emerald-800/90 pt-20 transition-all duration-1000 ease-in-out"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1597935258735-e238c37547a2?auto=format&fit=crop&q=80")`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("${headerImages[currentImageIndex]}")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
       >
-        {/* Logo */}
-        <div className="absolute top-4 left-4 z-10 bg-white/90 p-2 rounded-lg shadow-md">
-          <img 
-            src="https://i.ibb.co/6L0WcpZ/AL-ANQIYAA-LOGO-2-1-1-removebg-preview.png" 
-            alt="Al Anqiyaa Logo" 
-            className="h-8 w-auto"
-          />
-        </div>
-
-        <div className="text-center text-white px-4 max-w-4xl mt-16">
+        <div className="text-center text-white px-4 max-w-4xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-center" style={{ fontFamily: 'var(--font-primary)' }}>
             Attaining Piety Through Seeking Knowledge
           </h1>
@@ -272,8 +333,31 @@ function App() {
         </div>
       </div>
 
+      {/* FAQ Section */}
+      <div id="faq" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-900 text-center">
+            Frequently Asked Questions
+          </h2>
+          <div className="max-w-3xl mx-auto space-y-8">
+            <div className="bg-gray-50 rounded-xl p-6">
+              <h3 className="font-semibold text-gray-900 mb-2">Are classes online or in-person?</h3>
+              <p className="text-gray-600">All classes are held online via Zoom or Google Meet.</p>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-6">
+              <h3 className="font-semibold text-gray-900 mb-2">What materials are needed?</h3>
+              <p className="text-gray-600">Qur'an, notebook, and a stable internet connection.</p>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-6">
+              <h3 className="font-semibold text-gray-900 mb-2">Is financial aid available?</h3>
+              <p className="text-gray-600">Contact us for special arrangements.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Contact Us Section */}
-      <div id="contact" className="py-24 bg-white">
+      <div id="contact" className="py-24 bg-emerald-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 text-center">
@@ -371,27 +455,27 @@ function App() {
                   type="submit"
                   className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-6 rounded-lg font-semibold transition duration-300"
                 >
-                  Send Message
+                  Enroll Now
                 </button>
               </form>
             </div>
 
-            {/* FAQ Section */}
+            {/* Contact Information */}
             <div className="space-y-12">
-              <div className="bg-gray-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold mb-6 text-gray-900 text-center">Frequently Asked Questions</h3>
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Are classes online or in-person?</h4>
-                    <p className="text-gray-600">All classes are held online via Zoom or Google Meet.</p>
+              <div className="bg-white rounded-2xl p-8">
+                <h3 className="text-2xl font-bold mb-6 text-gray-900">Contact Information</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <Phone className="h-5 w-5 text-emerald-600" />
+                    <a href="tel:+2347042211721" className="text-gray-700 hover:text-emerald-600">+234 704 221 1721</a>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">What materials are needed?</h4>
-                    <p className="text-gray-600">Qur'an, notebook, and a stable internet connection.</p>
+                  <div className="flex items-center space-x-3">
+                    <Phone className="h-5 w-5 text-emerald-600" />
+                    <a href="tel:+2348130363863" className="text-gray-700 hover:text-emerald-600">+234 813 036 3863</a>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Is financial aid available?</h4>
-                    <p className="text-gray-600">Contact us for special arrangements.</p>
+                  <div className="flex items-center space-x-3">
+                    <Mail className="h-5 w-5 text-emerald-600" />
+                    <a href="mailto:info@alanqiyaa.com.ng" className="text-gray-700 hover:text-emerald-600">info@alanqiyaa.com.ng</a>
                   </div>
                 </div>
               </div>
