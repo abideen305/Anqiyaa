@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, Users, GraduationCap, Layout, ChevronRight, Star, Clock, Users2, BookOpenCheck, Heart, BookText, Sparkles, Mail, Phone, MessageSquare, Instagram, Whatsapp, Telegram, Send, MessageCircle } from 'lucide-react';
+import { BookOpen, Users, GraduationCap, Layout, ChevronRight, Star, Clock, Users2, BookOpenCheck, Heart, BookText, Sparkles, Mail, Phone, MessageCircle, Instagram, Send } from 'lucide-react';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -34,7 +34,7 @@ function App() {
     <div className="min-h-screen bg-white">
       {/* WhatsApp Chat Button */}
       <a
-        href="https://wa.me/2348130363863?text=Assalamualaykum%20warahmatullah%20Al%20Anqiyaa%20Islamic%20Academy.%20I%20want%20to%20make%20enquiries%20about%20your%20online%20Islamic%20and%20Qur'an%20classes.%20My%20name%20is"
+        href={`https://wa.me/2348130363863?text=${encodeURIComponent("Assalamualaykum warahmatullah Al Anqiyaa Islamic Academy. I want to make enquiries about your online Islamic and Qur'an classes. My name is")}`}
         className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50 flex items-center gap-2"
         target="_blank"
         rel="noopener noreferrer"
@@ -47,21 +47,21 @@ function App() {
       <div 
         className="relative h-screen flex items-center justify-center bg-gradient-to-r from-emerald-900/90 to-emerald-800/90"
         style={{
-          // backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1597935258735-e238c37547a2?auto=format&fit=crop&q=80")`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1597935258735-e238c37547a2?auto=format&fit=crop&q=80")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
       >
         {/* Logo */}
-        <div className="absolute top-4 left-4 z-10">
+        <div className="absolute top-4 left-4 z-10 bg-white/90 p-2 rounded-lg shadow-md">
           <img 
             src="https://i.ibb.co/6L0WcpZ/AL-ANQIYAA-LOGO-2-1-1-removebg-preview.png" 
             alt="Al Anqiyaa Logo" 
-            className="h-16 w-auto"
+            className="h-8 w-auto"
           />
         </div>
 
-        <div className="text-center text-white px-4 max-w-4xl">
+        <div className="text-center text-white px-4 max-w-4xl mt-16">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-center" style={{ fontFamily: 'var(--font-primary)' }}>
             Attaining Piety Through Seeking Knowledge
           </h1>
@@ -400,21 +400,6 @@ function App() {
         </div>
       </div>
 
-      {/* Testimonial Section */}
-      <div className="py-24 bg-emerald-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="relative">
-            <svg className="absolute top-0 left-0 transform -translate-x-8 -translate-y-8 h-16 w-16 text-gray-200" fill="currentColor" viewBox="0 0 32 32">
-              <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-            </svg>
-            <p className="text-xl md:text-2xl text-gray-600 italic">
-              "Studying at Al Anqiyaa transformed my understanding of Tajweed. The teachers are patient and knowledgeable."
-            </p>
-            <p className="mt-6 text-lg font-semibold text-emerald-800">— Aisha M., Student</p>
-          </div>
-        </div>
-      </div>
-
       {/* Footer */}
       <footer className="bg-emerald-900 text-white">
         <div className="max-w-7xl mx-auto px-4 py-16">
@@ -440,18 +425,15 @@ function App() {
             <div>
               <h3 className="text-2xl font-bold mb-6 text-center">Connect With Us</h3>
               <div className="flex space-x-6 justify-center">
-                <a href="#" className="hover:text-emerald-300">
+                <a href="https://www.instagram.com/alanqiyaaislamicacademy?igsh=dnd1M3Rqb3I0bHcz" className="hover:text-emerald-300" target="_blank" rel="noopener noreferrer">
                   <Instagram className="h-8 w-8" />
                 </a>
-                <a 
-  href="https://wa.me/2348130363863?text=Assalamualaykum%20warahmatullah%20Al%20Anqiyaa%20Islamic%20Academy.%20I%20want%20to%20make%20enquiries%20about%20your%20online%20Islamic%20and%20Qur'an%20classes.%20My%20name%20is" 
-  className="hover:text-emerald-300"
->
-  <Whatsapp className="h-8 w-8" /> {/* WhatsApp icon with automated message */}
-</a>
-<a href="https://t.me/yourTelegramUsername" className="hover:text-emerald-300">
-  <Telegram className="h-8 w-8" /> {/* Telegram icon */}
-</a>
+                <a href={`https://wa.me/2348130363863?text=${encodeURIComponent("Assalamualaykum warahmatullah Al Anqiyaa Islamic Academy. I want to make enquiries about your online Islamic and Qur'an classes. My name is")}`} className="hover:text-emerald-300" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="h-8 w-8" />
+                </a>
+                <a href="https://t.me/alanqiyaa" className="hover:text-emerald-300" target="_blank" rel="noopener noreferrer">
+                  <Send className="h-8 w-8" />
+                </a>
               </div>
             </div>
 
