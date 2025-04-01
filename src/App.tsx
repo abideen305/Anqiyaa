@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Users, GraduationCap, Layout, ChevronRight, Star, Clock, Users2, BookOpenCheck, Heart, BookText, Sparkles, Mail, Phone, MessageCircle, Instagram, Send } from 'lucide-react';
+import { BookOpen, Users, GraduationCap, Layout, ChevronRight, Star, Clock, Users2, BookOpenCheck, Heart, BookText, Sparkles, Mail, Phone, MessageCircle, Instagram, Send, Menu } from 'lucide-react';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -10,6 +10,7 @@ function App() {
     message: ''
   });
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const headerImages = [
@@ -75,14 +76,30 @@ function App() {
       {/* Navigation Bar */}
       <nav className="bg-white shadow-md fixed w-full z-50 top-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex-shrink-0">
+          <div className="flex justify-between items-center h-24">
+            <div className="flex items-center">
               <img 
                 src="https://i.ibb.co/6L0WcpZ/AL-ANQIYAA-LOGO-2-1-1-removebg-preview.png" 
                 alt="Al Anqiyaa Logo" 
-                className="h-12 w-auto"
+                className="h-[88px] w-auto"
               />
+              <div className="ml-3 hidden sm:block">
+                <p className="text-xl font-primary text-emerald-800">أكاديمية الأنقياء الإسلامية</p>
+                <p className="text-sm text-gray-600">Al Anqiyaa Islamic Academy</p>
+              </div>
             </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-gray-700 hover:text-emerald-600 p-2"
+              >
+                <Menu className="h-6 w-6" />
+              </button>
+            </div>
+
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               <button 
                 onClick={() => scrollToSection('courses')}
@@ -104,6 +121,48 @@ function App() {
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
+                className="bg-emerald-600 text-white hover:bg-emerald-700 px-4 py-2 rounded-md text-sm font-medium"
+              >
+                Enroll Now
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} pb-4`}>
+            <div className="flex flex-col space-y-2">
+              <button 
+                onClick={() => {
+                  scrollToSection('courses');
+                  setIsMenuOpen(false);
+                }}
+                className="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Courses
+              </button>
+              <button 
+                onClick={() => {
+                  scrollToSection('faq');
+                  setIsMenuOpen(false);
+                }}
+                className="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                FAQ
+              </button>
+              <button 
+                onClick={() => {
+                  scrollToSection('contact');
+                  setIsMenuOpen(false);
+                }}
+                className="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Contact Us
+              </button>
+              <button 
+                onClick={() => {
+                  scrollToSection('contact');
+                  setIsMenuOpen(false);
+                }}
                 className="bg-emerald-600 text-white hover:bg-emerald-700 px-4 py-2 rounded-md text-sm font-medium"
               >
                 Enroll Now
